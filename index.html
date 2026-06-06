@@ -722,9 +722,7 @@ h2.msh{font-family:var(--fn);font-size:1.4rem;font-weight:700;letter-spacing:-.0
     <div class="divider rv"></div>
     <div class="rw-grid">
       <div class="rw-card rv d1" onclick="document.getElementById('modal-qaswa').classList.add('open')">
-        <div class="rw-img-placeholder" style="background:radial-gradient(ellipse at 30% 50%,#141220,#08090f)">
-          <div style="text-align:center"><div style="font-size:3.5rem">🎭</div><div style="font-family:'DM Mono',monospace;font-size:.5rem;color:#c9a84c;letter-spacing:.15em;margin-top:.5rem">IMMERSIVE MULTIMEDIA</div></div>
-        </div>
+        <img src="Camel_plaza.jpeg" alt="Al Qaswa — Camel Plaza immersive room" style="width:100%;height:200px;object-fit:cover;filter:saturate(.9) contrast(1.05);display:block"/>
         <div class="rw-body">
           <div class="rw-badge">📍 Saudi Arabia · Aug 2025 — Jan 2026</div>
           <div class="rw-title">Al Qaswa Interactive Experience</div>
@@ -1004,30 +1002,126 @@ h2.msh{font-family:var(--fn);font-size:1.4rem;font-weight:700;letter-spacing:-.0
 </footer>
 
 <!-- MODAL: Al Qaswa -->
+<style>
+/* Al Qaswa Modal Gallery */
+.qw-hero{width:100%;height:360px;object-fit:cover;display:block;margin-bottom:2rem;filter:saturate(.95) contrast(1.04)}
+.qw-rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:1.2rem 0 2rem}
+.qw-room{position:relative;overflow:hidden;cursor:pointer}
+.qw-room img{width:100%;height:180px;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1),filter .3s}
+.qw-room:hover img{transform:scale(1.06);filter:saturate(1.1) brightness(1.05)}
+.qw-room-label{position:absolute;bottom:0;left:0;right:0;padding:.5rem .7rem;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent);font-family:'DM Mono',monospace;font-size:.55rem;color:#f0ece4;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:opacity .25s}
+.qw-room:hover .qw-room-label{opacity:1}
+.qw-touch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;margin:1.2rem 0 2rem}
+.qw-touch{position:relative;overflow:hidden;border:1px solid rgba(201,168,76,.15)}
+.qw-touch img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s}
+.qw-touch:hover img{transform:scale(1.04)}
+.qw-touch-label{position:absolute;bottom:0;left:0;right:0;padding:.6rem .8rem;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent);font-family:'DM Mono',monospace;font-size:.58rem;color:#c9a84c;letter-spacing:.1em;text-transform:uppercase}
+/* Lightbox */
+#qw-lb{display:none;position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.95);align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+#qw-lb.open{display:flex}
+#qw-lb img{max-width:90vw;max-height:88vh;object-fit:contain;animation:lbIn .3s cubic-bezier(.22,1,.36,1)}
+@keyframes lbIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+#qw-lb-close{position:absolute;top:1rem;right:1.5rem;font-family:'DM Mono',monospace;font-size:.65rem;color:#c9a84c;border:1px solid rgba(201,168,76,.3);background:rgba(8,9,15,.9);padding:.5rem 1rem;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;z-index:9501}
+#qw-lb-cap{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(240,236,228,.6);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+@media(max-width:700px){.qw-rooms-grid{grid-template-columns:1fr 1fr}.qw-touch-grid{grid-template-columns:1fr}.qw-hero{height:220px}.qw-room img{height:130px}.qw-touch img{height:180px}}
+</style>
+
+<!-- Lightbox -->
+<div id="qw-lb">
+  <button id="qw-lb-close" onclick="closeLb()">✕ Close</button>
+  <img id="qw-lb-img" src="" alt=""/>
+  <div id="qw-lb-cap"></div>
+</div>
+
 <div class="modal-overlay" id="modal-qaswa">
   <div class="modal-inner">
     <button class="modal-close" onclick="document.getElementById('modal-qaswa').classList.remove('open')">✕ Close</button>
     <div class="modal-badge">Site Engineer · AV & Control Systems</div>
     <h1 class="modal-title">Al Qaswa<br><span style="color:var(--cy)">Interactive Experience</span></h1>
-    <p class="modal-sub">Large-scale immersive and interactive multimedia installation in Saudi Arabia. Deployed 60+ projectors, motion cameras, tracking systems, and full Crestron control infrastructure across a landmark cultural experience center.</p>
+    <p class="modal-sub">Large-scale immersive and interactive multimedia installation in Saudi Arabia. Deployed 60+ interactive projectors, motion-sensing cameras, tracking systems, and full Crestron control infrastructure across a landmark cultural experience center.</p>
     <div class="modal-meta">
       <span class="mm o">📍 Saudi Arabia</span><span class="mm c">Aug 2025 – Jan 2026</span><span class="mm">Site Engineer</span><span class="mm">AV Systems</span><span class="mm">Crestron</span><span class="mm">CAT6A</span>
     </div>
+
+    <!-- Hero image -->
+    <img class="qw-hero" src="Desert_Terrain_Viod.jpeg" alt="Desert Terrain Void — immersive room" onclick="openLb(this.src,'Desert Terrain Void')"/>
+
     <div class="msec">
       <div class="msl">Project Overview</div>
       <h2 class="msh">Immersive multimedia at scale</h2>
-      <p class="mbp">Worked as <strong>Site Engineer</strong> on a large-scale immersive and interactive multimedia project for a cultural landmark in KSA. Responsible for the full technical deployment from infrastructure to commissioning.</p>
+      <p class="mbp">Worked as <strong>Site Engineer</strong> on a large-scale immersive and interactive multimedia project for a cultural landmark in KSA. Responsible for the full technical deployment from infrastructure to commissioning — from CAT6A cabling to 60+ projector installations and Crestron control system programming.</p>
     </div>
+
+    <!-- Room Gallery -->
+    <div class="msec">
+      <div class="msl">Room Showcase</div>
+      <h2 class="msh">Six immersive experience rooms</h2>
+      <p class="mbp" style="margin-bottom:1.2rem">Each room features a unique interactive theme, delivered via floor and wall projection mapping, motion-sensing tracking cameras, and real-time content control through a custom Crestron interface.</p>
+      <div class="qw-rooms-grid">
+        <div class="qw-room" onclick="openLb('Camel_plaza.jpeg','Camel Plaza')">
+          <img src="Camel_plaza.jpeg" alt="Camel Plaza"/>
+          <div class="qw-room-label">Camel Plaza</div>
+        </div>
+        <div class="qw-room" onclick="openLb('Camel_Coloring.jpeg','Camel Coloring')">
+          <img src="Camel_Coloring.jpeg" alt="Camel Coloring"/>
+          <div class="qw-room-label">Camel Coloring</div>
+        </div>
+        <div class="qw-room" onclick="openLb('Desert_Block_Building.jpeg','Desert Block Building')">
+          <img src="Desert_Block_Building.jpeg" alt="Desert Block Building"/>
+          <div class="qw-room-label">Desert Block Building</div>
+        </div>
+        <div class="qw-room" onclick="openLb('Desert_Jump_Universe.jpeg','Desert Jump Universe')">
+          <img src="Desert_Jump_Universe.jpeg" alt="Desert Jump Universe"/>
+          <div class="qw-room-label">Desert Jump Universe</div>
+        </div>
+        <div class="qw-room" onclick="openLb('Desert_Terrain_Viod.jpeg','Desert Terrain Void')">
+          <img src="Desert_Terrain_Viod.jpeg" alt="Desert Terrain Void"/>
+          <div class="qw-room-label">Desert Terrain Void</div>
+        </div>
+        <div class="qw-room" onclick="openLb('Qaaswa_stories.jpeg','Qaswa Stories')">
+          <img src="Qaaswa_stories.jpeg" alt="Qaswa Stories"/>
+          <div class="qw-room-label">Qaswa Stories</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Touchscreen Gallery -->
+    <div class="msec">
+      <div class="msl">Crestron Control Interface</div>
+      <h2 class="msh">Custom Crestron touchscreen system</h2>
+      <p class="mbp" style="margin-bottom:1.2rem">The entire facility was controlled via a custom Crestron touch panel interface, allowing operators to manage all 60+ projectors room-by-room — powering them on/off individually or simultaneously — with real-time visual feedback of projector status.</p>
+      <div class="qw-touch-grid">
+        <div class="qw-touch" onclick="openLb('Home_page_for_touch_screen.jpeg','Touchscreen — Home Page')">
+          <img src="Home_page_for_touch_screen.jpeg" alt="Touchscreen Home Page"/>
+          <div class="qw-touch-label">Home Page</div>
+        </div>
+        <div class="qw-touch" onclick="openLb('main_page_for_touch_screen.jpeg','Touchscreen — Main Navigation Map')">
+          <img src="main_page_for_touch_screen.jpeg" alt="Touchscreen Main Page"/>
+          <div class="qw-touch-label">Main Navigation Map</div>
+        </div>
+        <div class="qw-touch" onclick="openLb('touch_screen_example_for_one_room_when_all_projectors_in_the_room_off.jpeg','Room Control — All Projectors OFF')">
+          <img src="touch_screen_example_for_one_room_when_all_projectors_in_the_room_off.jpeg" alt="Projectors Off"/>
+          <div class="qw-touch-label">Room Control — Projectors OFF</div>
+        </div>
+        <div class="qw-touch" onclick="openLb('touch_screen_example_for_one_room_when_all_projectors_in_the_room_on.jpeg','Room Control — All Projectors ON')">
+          <img src="touch_screen_example_for_one_room_when_all_projectors_in_the_room_on.jpeg" alt="Projectors On"/>
+          <div class="qw-touch-label">Room Control — Projectors ON</div>
+        </div>
+      </div>
+    </div>
+
     <div class="msec">
       <div class="msl">Scope & Responsibilities</div>
       <h2 class="msh">What I delivered</h2>
       <div class="tl">
         <div class="tli"><div><div class="tlh">CAT6A Infrastructure</div><div class="tlb">Responsible for the full structured cabling infrastructure — installation, termination, testing, and labeling of all CAT6A runs throughout the facility.</div></div></div>
-        <div class="tli"><div><div class="tlh">60+ Interactive Projectors</div><div class="tlb">Participated in installation and commissioning of more than 60 interactive projectors, motion-sensing cameras, and tracking systems throughout the immersive spaces.</div></div></div>
+        <div class="tli"><div><div class="tlh">60+ Interactive Projectors</div><div class="tlb">Participated in installation and commissioning of more than 60 interactive projectors, motion-sensing cameras, and tracking systems across all six experience rooms.</div></div></div>
+        <div class="tli"><div><div class="tlh">Crestron Control System</div><div class="tlb">Programmed and deployed a custom Crestron touch panel interface for full facility control — real-time projector status, room-by-room management, and bulk on/off commands.</div></div></div>
         <div class="tli"><div><div class="tlh">Infrastructure Deployment</div><div class="tlb">Installed racks, servers, and network switches. Coordinated technical sequencing to ensure clean integration across all subsystems.</div></div></div>
         <div class="tli"><div><div class="tlh">International Coordination</div><div class="tlb">Main communication bridge between the local site team, the Spanish integration team, and the project manager — ensuring coordination, installation quality, and system readiness on tight deadlines.</div></div></div>
       </div>
     </div>
+
     <button class="btn btn-secondary" onclick="document.getElementById('modal-qaswa').classList.remove('open')" style="margin-top:1rem">← Back to Portfolio</button>
   </div>
 </div>
@@ -1309,6 +1403,36 @@ document.querySelectorAll('.modal-overlay').forEach(m=>bodyObs.observe(m,{attrib
 
 // MOBILE NAV
 function toggleMob(){document.getElementById('mob-nav').classList.toggle('open')}
+
+// ════ LIGHTBOX ════
+function openLb(src,cap){
+  document.getElementById('qw-lb-img').src=src;
+  document.getElementById('qw-lb-cap').textContent=cap||'';
+  document.getElementById('qw-lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('qw-lb').classList.remove('open');
+  if(!document.querySelector('.modal-overlay.open')) document.body.style.overflow='';
+}
+document.getElementById('qw-lb').addEventListener('click',function(e){if(e.target===this)closeLb();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+
+// ════ CLICK RIPPLE RING ONLY ════
+(function(){
+  document.addEventListener('click',function(e){
+    const ripple=document.createElement('div');
+    ripple.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:6px;height:6px;border-radius:50%;border:1.5px solid rgba(201,168,76,.75);transform:translate(-50%,-50%) scale(1);pointer-events:none;z-index:8998;animation:rippleOut .6s cubic-bezier(.2,1,.4,1) forwards;`;
+    document.body.appendChild(ripple);
+    setTimeout(()=>ripple.remove(),650);
+  });
+  if(!document.getElementById('ripple-kf')){
+    const s=document.createElement('style');
+    s.id='ripple-kf';
+    s.textContent=`@keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(20);opacity:0;border-color:rgba(201,168,76,0)}}`;
+    document.head.appendChild(s);
+  }
+})();
 
 // CONTACT FORM
 function sendMsg(){
